@@ -1,4 +1,4 @@
-const API_KEY = `b69bbdaa05d2405b8c8f9e574293bcba`;
+//const API_KEY = `b69bbdaa05d2405b8c8f9e574293bcba`;
 let newsList = [];
 const menus = document.querySelectorAll(".menus button");
 
@@ -8,7 +8,8 @@ menus.forEach((menu) =>
 
 const getLatesNews = async () => {
   const url = new URL(
-    `https://newsapi.org/v2/top-headlines?country=us&apiKey=${API_KEY}`
+    `http://nuna-api.netlify.app/top-headlines`
+     //https://newsapi.org/v2/top-headlines?country=us&apiKey=${API_KEY}
   );
   //url인스턴스는 url에 필요한 함수와 변수들을 제공함
   const response = await fetch(url); //url 내의 데이터를 가지고 옴
@@ -21,7 +22,7 @@ getLatesNews();
 const getNewsByCategory = async (event) => {
   const category = event.target.textContent.toLowerCase();
   const url = new URL(
-    `https://newsapi.org/v2/top-headlines?country=us&category=${category}&apiKey=${API_KEY}`
+    `http://nuna-api.netlify.app/top-headlines?category=${category}`
   );
   const response = await fetch(url); 
   const data = await response.json();
@@ -32,7 +33,7 @@ const getNewsByCategory = async (event) => {
 const getNewsBySearch = async () => {
   const keyword = document.getElementById("input-search").value;
   const url = new URL(
-    `https://newsapi.org/v2/top-headlines?country=us&q=${keyword}&apiKey=${API_KEY}`
+    `http://nuna-api.netlify.app/top-headlines?q=${keyword}`
   );
   const response = await fetch(url); 
   const data = await response.json(); 
