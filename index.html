@@ -13,6 +13,10 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
+    <div class="search">
+        <input id="input-search" placeholder="원하는 뉴스를 검색하세요">
+        <button id="button-search" onclick="getNewsBySearch()">검색</button>
+    </div>
     <section class="container">
       <section>
         <div class="head-line">
@@ -23,20 +27,13 @@
           </svg>
         </div>
         <div class="menus">
-          <button>Sport</button>
-          <button>Tech</button>
-          <button>World</button>
-          <button>Finance</button>
-          <button>Politics</button>
-          <button>Business</button>
-          <button>Entertainment</button>
-          <button>Beauty</button>
-          <button>Travel</button>
-          <button>Music</button>
-          <button>Food</button>
-          <button>Science</button>
-          <button>Gaming</button>
-          <button>Energy</button>
+          <button id="Sport">Sport</button>
+          <button id="Technology">Technology</button>
+          <button id="Business">Business</button>
+          <button id="Entertainment">Entertainment</button>
+          <button id="Science">Science</button>
+          <button id="General">General</button>
+          <button id="Health">Health</button>
         </div>
       </section>
       <section id="news-board">

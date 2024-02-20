@@ -43,3 +43,15 @@
     margin-bottom: 1em;
     border-bottom: 1px solid lightgray;
 }
+div.search {
+    display: flex;
+    justify-content: left;
+    position: relative;
+    top: 1em;
+    left: 3em;
+    /* margin-bottom: 2em; 마진 겹침 */
+}
+#input-search {
+    margin-right: 0.5em;
+    width: 200px;
+}
