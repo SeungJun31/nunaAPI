@@ -8,7 +8,7 @@ menus.forEach((menu) =>
 
 const getLatesNews = async () => {
   const url = new URL(
-    `http://nuna-api.netlify.app/top-headlines`
+    `https://nuna-api.netlify.app/top-headlines`
      //https://newsapi.org/v2/top-headlines?country=us&apiKey=${API_KEY}
   );
   //url인스턴스는 url에 필요한 함수와 변수들을 제공함
@@ -17,18 +17,18 @@ const getLatesNews = async () => {
   newsList = data.articles;
   render();
 };
-getLatesNews();
 
 const getNewsByCategory = async (event) => {
   const category = event.target.textContent.toLowerCase();
   const url = new URL(
-    `http://nuna-api.netlify.app/top-headlines?category=${category}`
+    `https://nuna-api.netlify.app/top-headlines?category=${category}`
   );
   const response = await fetch(url); 
   const data = await response.json();
   newsList = data.articles;
   render();
 };
+getLatesNews();
 
 const getNewsBySearch = async () => {
   const keyword = document.getElementById("input-search").value;
