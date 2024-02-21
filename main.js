@@ -33,7 +33,7 @@ getLatesNews();
 const getNewsBySearch = async () => {
   const keyword = document.getElementById("input-search").value;
   const url = new URL(
-    `http://nuna-api.netlify.app/top-headlines?q=${keyword}`
+    `https://nuna-api.netlify.app/top-headlines?q=${keyword}`
   );
   const response = await fetch(url); 
   const data = await response.json(); 
