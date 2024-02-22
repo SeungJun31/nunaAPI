@@ -1,9 +1,15 @@
 //const API_KEY = `b69bbdaa05d2405b8c8f9e574293bcba`;
 let newsList = [];
 const menus = document.querySelectorAll(".menus button");
+const sideMenuList = document.querySelectorAll(".side-menu-list");
+const magnifyingGlass = document.getElementById("magnifying-glass");
 
 menus.forEach((menu) =>
   menu.addEventListener("click", () => getNewsByCategory(event))
+);
+sideMenuList.forEach((menu) =>
+  menu.addEventListener("click", () => getNewsByCategory(event))
+  //sideMenuList의 querySelectorAll를 배열로 변환한다음 for문으로 함수 작성 후 closeNav() 붙이기??
 );
 
 const getLatesNews = async () => {
@@ -17,6 +23,7 @@ const getLatesNews = async () => {
   newsList = data.articles;
   render();
 };
+getLatesNews();
 
 const getNewsByCategory = async (event) => {
   const category = event.target.textContent.toLowerCase();
@@ -28,7 +35,6 @@ const getNewsByCategory = async (event) => {
   newsList = data.articles;
   render();
 };
-getLatesNews();
 
 const getNewsBySearch = async () => {
   const keyword = document.getElementById("input-search").value;
@@ -43,7 +49,7 @@ const getNewsBySearch = async () => {
 
 const render = () => {
   const newsHTML = newsList
-    .map(
+  .map(
       (news) => `<div class="row news">
   <div class="col-lg-4">
     <img class="news-img-size"
@@ -58,4 +64,21 @@ const render = () => {
     )
     .join(" "); //string타입으로 바꿈으로써 배열의 ,제거
   document.getElementById("news-board").innerHTML = newsHTML;
+};
+
+magnifyingGlass.addEventListener("click", openSearch = () => {
+  let inputArea = document.getElementById("input-area");
+  if (inputArea.style.display === "inline") { //span태그는 inline
+    inputArea.style.display = "none"; //감추기
+  } else {
+    inputArea.style.display = "inline"; //보이게 하기
+  }
+});
+
+const openNav = () => {
+  const open = document.getElementById("mySidenav").style.width = "250px";
+  // document.getElementsByClassName("menus").style.display = none;
+};
+const closeNav = () => {
+  document.getElementById("mySidenav").style.width = "0px";
 };

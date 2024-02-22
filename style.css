@@ -1,57 +1,112 @@
 * {
-    margin:0;
-    padding:0;
+  margin: 0;
+  padding: 0;
 }
 .head-line {
-    margin-top: 2em;
-    display: flex;
-    justify-content: center;
+  margin-top: 2em;
+  display: flex;
+  justify-content: center;
 }
 .head-line svg {
-    width: 450px;
+  width: 450px;
 }
 .menus {
-    margin-top: 1em;
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    border-top:1px solid #ebebeb;
-    padding-bottom: 5px;
-    border-bottom: 4px solid black;
+  margin-top: 1em;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  border-top: 1px solid #ebebeb;
+  padding-bottom: 5px;
+  border-bottom: 4px solid black;
 }
 .menus button {
-    border: none;
-    background-color: none;
-    margin: 5px;
+  border: none;
+  background-color: none;
+  margin: 10px;
+  font-size: 25px;
 }
 .menus button:hover {
-    background-color: beige;
+  background-color: beige;
 }
 .news-img-size {
-    max-width: 100%;
-    max-height: 100%;
+  max-width: 100%;
+  max-height: 100%;
 }
 .col-lg-4 {
-    margin-top: 1em;
-    margin-bottom: 1em;
-    border-bottom: 1px solid lightgray;
-    display: flex;
-    justify-content: center;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  border-bottom: 1px solid lightgray;
+  display: flex;
+  justify-content: center;
 }
 .col-lg-8 {
-    margin-top: 1em;
-    margin-bottom: 1em;
-    border-bottom: 1px solid lightgray;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  border-bottom: 1px solid lightgray;
 }
 div.search {
-    display: flex;
-    justify-content: left;
-    position: relative;
-    top: 1em;
-    left: 3em;
-    /* margin-bottom: 2em; 마진 겹침 */
+  display: flex;
+  justify-content: left;
+  position: relative;
+  top: 1.2em;
+  transition: 0.5s;
+  /* margin-bottom: 2em; 마진 겹침 */
 }
 #input-search {
-    margin-right: 0.5em;
-    width: 200px;
+  margin-right: 0.5em;
+  margin-left: 1em;
+  width: 180px;
+  height: 32px;
+}
+#magnifying-glass {
+  width: 30px;
+  height: 30px;
+  border: none;
+  margin-top: 3px;
+}
+#bar {
+  width: 30px;
+  height: 30px;
+  border: none;
+  margin-right: 30px;
+}
+#button-search {
+  width: 35px;
+  height: 32px;
+}
+#input-area {
+  display: none;
+}
+.closebtn {
+  width: 35px;
+  height: 35px;
+  border: none;
+  margin-bottom: 20px;
+  background-color: burlywood;
+}
+.side-menu-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.side-menu-list > button {
+  margin: 15px;
+  border: none;
+  background: none;
+  width: 120px;
+}
+.side-menu {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 0;
+  height: 100%;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: burlywood;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
 }

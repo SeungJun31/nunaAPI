@@ -14,11 +14,28 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <div class="search">
-        <input id="input-search" placeholder="원하는 뉴스를 검색하세요">
-        <button id="button-search" onclick="getNewsBySearch()">검색</button>
-    </div>
+    <div class="side-menu" id="mySidenav">
+      <button class="closebtn" onclick="closeNav()"><img src="img/rectangle-xmark-solid.svg"></button>
+      <div class="side-menu-list" id="menu-list">
+        <button class="Sport">Sport</button>
+        <button class="Technology">Technology</button>
+        <button class="Business">Business</button>
+        <button class="Entertainment">Entertainment</button>
+        <button class="Science">Science</button>
+        <button class="General">General</button>
+        <button class="Health">Health</button>
+      </div>
+</div>
     <section class="container">
+      <div class="search">
+        <button id="bar" onclick="openNav()"><img id="bar-icon" onclick="openNav()" src="img/bars-solid.svg"></button>
+        <button id="magnifying-glass" >
+        <img id="magnifying-glass-icon"src="img/magnifying-glass-solid.svg"></button>
+        <span id="input-area">
+        <input id="input-search" placeholder="원하는 뉴스를 검색하세요">
+        <button id="button-search" onclick="getNewsBySearch()">Go!</button>
+      </span>
+    </div> 
       <section>
         <div class="head-line">
           <svg viewBox="0 0 184 25" fill="#000">
@@ -28,13 +45,13 @@
           </svg>
         </div>
         <div class="menus">
-          <button id="Sport">Sport</button>
-          <button id="Technology">Technology</button>
-          <button id="Business">Business</button>
-          <button id="Entertainment">Entertainment</button>
-          <button id="Science">Science</button>
-          <button id="General">General</button>
-          <button id="Health">Health</button>
+          <button class="Sport">Sport</button>
+          <button class="Technology">Technology</button>
+          <button class="Business">Business</button>
+          <button class="Entertainment">Entertainment</button>
+          <button class="Science">Science</button>
+          <button class="General">General</button>
+          <button class="Health">Health</button>
         </div>
       </section>
       <section id="news-board">
