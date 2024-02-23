@@ -31,6 +31,7 @@ const getNews = async () => {
       }
       newsList = data.articles;
       totalResults = data.totalResults;
+      console.log(data)
       render();
       paginationRender();
     } else {
@@ -116,10 +117,10 @@ const paginationRender = () => {
   const totalPages = Math.ceil(totalResults / pageSize);
   const pageGroup = Math.ceil(page / groupSize);
   let lastPage = pageGroup * groupSize;
-  if (lastPage < totalPages) {
+  if (lastPage > totalPages) {
     lastPage = totalPages;
   }
-  let firstPage =
+  const firstPage =
     lastPage - (groupSize - 1) <= 0 ? 1 : lastPage - (groupSize - 1);
   // if(firstPage < 1) {
   //   firstPage = 1
