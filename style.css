@@ -110,6 +110,18 @@ div.search {
   transition: 0.5s;
   padding-top: 60px;
 }
-.alert alert-danger{
-  background-color: lightpink;
+.pagination {
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
 }
+#page-navigation {
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+}
+/* .page-item {
+  width: 35px;
+  height: 32px;
+  border: none;
+} */

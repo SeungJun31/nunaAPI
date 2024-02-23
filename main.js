@@ -3,6 +3,10 @@ let newsList = [];
 const menus = document.querySelectorAll(".menus button");
 const sideMenuList = document.querySelectorAll(".side-menu-list");
 const magnifyingGlass = document.getElementById("magnifying-glass");
+let totalResults = 0;
+let page = 1;
+const pageSize = 10;
+const groupSize = 5;
 
 menus.forEach((menu) =>
   menu.addEventListener("click", () => getNewsByCategory(event))
@@ -17,15 +21,18 @@ let url = new URL(`https://nuna-api.netlify.app/top-headlines`);
 const getNews = async () => {
   try {
     //소스코드 작성 - 에러 발생하면
+    url.searchParams.set("page", page); //&page=page => i
+    url.searchParams.set("pageSize", pageSize); //&pageSize=pageSize => 10
     const response = await fetch(url); //url 내의 데이터를 가지고 옴
-
     const data = await response.json(); //json의 형태로 데이터를 만들어 줌
     if (response.status === 200) {
       if (data.articles.length === 0) {
         throw new Error("No result for this search");
       }
       newsList = data.articles;
+      totalResults = data.totalResults;
       render();
+      paginationRender();
     } else {
       throw new Error(data.message);
     }
@@ -102,4 +109,33 @@ const openNav = () => {
 };
 const closeNav = () => {
   document.getElementById("mySidenav").style.width = "0px";
+};
+
+const paginationRender = () => {
+  //totalpages, page, pageGroup, lastPage, firstPage
+  const totalPages = Math.ceil(totalResults / pageSize);
+  const pageGroup = Math.ceil(page / groupSize);
+  let lastPage = pageGroup * groupSize;
+  if (lastPage < totalPages) {
+    lastPage = totalPages;
+  }
+  let firstPage =
+    lastPage - (groupSize - 1) <= 0 ? 1 : lastPage - (groupSize - 1);
+  // if(firstPage < 1) {
+  //   firstPage = 1
+  // } else {
+  //   firstPage = lastPage - (groupSize - 1);
+  // }
+
+  let paginationHTML = ``;
+
+  for (let i = firstPage; i <= lastPage; i++) {
+    paginationHTML += `<li class="page-item ${
+      i === page ? "active" : ""}" onclick="moveToPage(${i})"><a class="page-link">${i}</a></li>`;
+  }
+  document.querySelector(".pagination").innerHTML = paginationHTML;
+};
+const moveToPage = (pageNum) => {
+  page = pageNum;
+  getNews();
 };
