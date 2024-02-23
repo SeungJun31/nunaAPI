@@ -110,3 +110,6 @@ div.search {
   transition: 0.5s;
   padding-top: 60px;
 }
+.alert alert-danger{
+  background-color: lightpink;
+}

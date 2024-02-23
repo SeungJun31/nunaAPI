@@ -7,49 +7,59 @@ const magnifyingGlass = document.getElementById("magnifying-glass");
 menus.forEach((menu) =>
   menu.addEventListener("click", () => getNewsByCategory(event))
 );
-sideMenuList.forEach((menu) =>
-  menu.addEventListener("click", () => getNewsByCategory(event))
+sideMenuList.forEach(
+  (menu) => menu.addEventListener("click", () => getNewsByCategory(event))
   //sideMenuList의 querySelectorAll를 배열로 변환한다음 for문으로 함수 작성 후 closeNav() 붙이기??
 );
 
-const getLatesNews = async () => {
-  const url = new URL(
-    `https://nuna-api.netlify.app/top-headlines`
-     //https://newsapi.org/v2/top-headlines?country=us&apiKey=${API_KEY}
-  );
-  //url인스턴스는 url에 필요한 함수와 변수들을 제공함
-  const response = await fetch(url); //url 내의 데이터를 가지고 옴
-  const data = await response.json(); //json의 형태로 데이터를 만들어 줌
-  newsList = data.articles;
-  render();
+let url = new URL(`https://nuna-api.netlify.app/top-headlines`);
+
+const getNews = async () => {
+  try {
+    //소스코드 작성 - 에러 발생하면
+    const response = await fetch(url); //url 내의 데이터를 가지고 옴
+
+    const data = await response.json(); //json의 형태로 데이터를 만들어 줌
+    if (response.status === 200) {
+      if (data.articles.length === 0) {
+        throw new Error("No result for this search");
+      }
+      newsList = data.articles;
+      render();
+    } else {
+      throw new Error(data.message);
+    }
+  } catch (error) {
+    //catch가 에러 잡음
+    errorRender(error.message);
+  }
 };
-getLatesNews();
+const getLatestNews = async () => {
+  url = new URL(
+    `https://nuna-api.netlify.app/top-headlines` //재할당
+    //https://newsapi.org/v2/top-headlines?country=us&apiKey=${API_KEY}
+  ); //url인스턴스는 url에 필요한 함수와 변수들을 제공함
+  getNews();
+};
+getLatestNews();
 
 const getNewsByCategory = async (event) => {
   const category = event.target.textContent.toLowerCase();
-  const url = new URL(
+  url = new URL(
     `https://nuna-api.netlify.app/top-headlines?category=${category}`
   );
-  const response = await fetch(url); 
-  const data = await response.json();
-  newsList = data.articles;
-  render();
+  getNews();
 };
 
 const getNewsBySearch = async () => {
   const keyword = document.getElementById("input-search").value;
-  const url = new URL(
-    `https://nuna-api.netlify.app/top-headlines?q=${keyword}`
-  );
-  const response = await fetch(url); 
-  const data = await response.json(); 
-  newsList = data.articles;
-  render();
+  url = new URL(`https://nuna-api.netlify.app/top-headlines?q=${keyword}`);
+  getNews();
 };
 
 const render = () => {
   const newsHTML = newsList
-  .map(
+    .map(
       (news) => `<div class="row news">
   <div class="col-lg-4">
     <img class="news-img-size"
@@ -66,17 +76,28 @@ const render = () => {
   document.getElementById("news-board").innerHTML = newsHTML;
 };
 
-magnifyingGlass.addEventListener("click", openSearch = () => {
-  let inputArea = document.getElementById("input-area");
-  if (inputArea.style.display === "inline") { //span태그는 inline
-    inputArea.style.display = "none"; //감추기
-  } else {
-    inputArea.style.display = "inline"; //보이게 하기
-  }
-});
+magnifyingGlass.addEventListener(
+  "click",
+  (openSearch = () => {
+    let inputArea = document.getElementById("input-area");
+    if (inputArea.style.display === "inline") {
+      //span태그는 inline
+      inputArea.style.display = "none"; //감추기
+    } else {
+      inputArea.style.display = "inline"; //보이게 하기
+    }
+  })
+);
+
+const errorRender = (errorMessage) => {
+  const errorHTML = `<div class="alert alert-danger" role="alert">
+  ${errorMessage}!
+</div>`;
+  document.getElementById("news-board").innerHTML = errorHTML;
+};
 
 const openNav = () => {
-  const open = document.getElementById("mySidenav").style.width = "250px";
+  const open = (document.getElementById("mySidenav").style.width = "250px");
   // document.getElementsByClassName("menus").style.display = none;
 };
 const closeNav = () => {
