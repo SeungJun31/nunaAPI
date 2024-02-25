@@ -31,7 +31,7 @@ const getNews = async () => {
       }
       newsList = data.articles;
       totalResults = data.totalResults;
-      console.log(data)
+      console.log(data);
       render();
       paginationRender();
     } else {
@@ -128,15 +128,34 @@ const paginationRender = () => {
   //   firstPage = lastPage - (groupSize - 1);
   // }
 
-  let paginationHTML = ``;
+  let paginationHTML = `
+  <li class="page-item" onclick="moveToPage(1)">
+    <a class="page-link" href="#">&lt&lt;</a></li>
+  <li class="page-item" onclick="moveToPage(${page - 1})">
+  <a class="page-link" href="#">&lt;</a></li>`;
 
   for (let i = firstPage; i <= lastPage; i++) {
     paginationHTML += `<li class="page-item ${
-      i === page ? "active" : ""}" onclick="moveToPage(${i})"><a class="page-link">${i}</a></li>`;
+      i === page ? "active" : ""
+    }" onclick="moveToPage(${i})"><a class="page-link">${i}</a></li>
+    `;
   }
+  paginationHTML += `
+  <li class="page-item" onclick="moveToPage(${page + 1})">
+    <a class="page-link" href="#">&gt;</a></li>
+  <li class="page-item" onclick="moveToPage(${totalPages})">
+    <a class="page-link" href="#">&gt&gt;</a></li>`;
   document.querySelector(".pagination").innerHTML = paginationHTML;
 };
 const moveToPage = (pageNum) => {
   page = pageNum;
   getNews();
+};
+
+const previousRender = () => {
+  const previous = document.getElementById("previous");
+  const previousPage = firstPage - groupSize;
+};
+const nextRender = () => {
+  const next = document.getElementById("next");
 };

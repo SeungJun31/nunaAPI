@@ -28,6 +28,11 @@
 .menus button:hover {
   background-color: beige;
 }
+@media screen and (max-width:600px) {
+  .menus {
+    display: none;
+  }
+}
 .news-img-size {
   max-width: 100%;
   max-height: 100%;
@@ -83,6 +88,11 @@ div.search {
   border: none;
   margin-bottom: 20px;
   background-color: burlywood;
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  margin-left: 60px;
+  
 }
 .side-menu-list {
   display: flex;
@@ -115,13 +125,9 @@ div.search {
   justify-content: center;
   cursor: pointer;
 }
-#page-navigation {
-  display: flex;
-  justify-content: center;
-  cursor: pointer;
+a {
+  text-decoration-line: none ;
 }
-/* .page-item {
-  width: 35px;
-  height: 32px;
-  border: none;
-} */
+.page-item {
+  margin: 2px;
+}
